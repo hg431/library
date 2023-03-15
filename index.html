@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf</title>
+    <style>
+        body {
+            background-image: url(background.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: serif;
+        }
+        header {
+            border-bottom: solid 3px rgba(255, 255, 255, 0.35);
+            display: flex;
+            margin-bottom:20px;
+        }
+        h1 {
+            font-size: 4rem;
+            color:white;
+            margin: 10px;
+        }
+        button {
+            font-family: inherit;
+            font-size: 100%;
+            line-height: 1.15;
+            margin: 0;
+            overflow: visible;
+            text-transform: none;
+            margin-left: auto;
+            width: 232px;
+            height:70px;
+            background: linear-gradient(180deg, #0B8525 0%, #08621C 100%);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            outline: none;
+            border: none;
+            color:white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .card {
+            width: 449px;
+            height: 305px;
+            background: rgba(217, 217, 217, 0.8);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(25px);
+            border-radius: 16px;
+            font-size:1.5rem;
+            padding: 20px;
+        }
+        .card img {
+            width:47px;
+        }
+        h2 {
+            margin:0;
+            padding:0;
+            display: inline-block;
+        }
+        .card img.delete {
+            width: 33px;
+            height: 33px;
+            opacity: 0.3;
+            float: right;
+            transition:0.5s
+        }
+        .card img.delete:hover {
+            opacity:1;
+            cursor:pointer;
+            transition:0.5s;
+        }
+        #container {
+            display:flex;
+            gap:30px;
+        }
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        }
+        .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+        .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+        .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+        input:checked + .slider {
+        background-color: #0B8525;
+        }
+        input:focus + .slider {
+        box-shadow: 0 0 1px #0B8525;
+        }
+        input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+        }
+        .slider.round {
+        border-radius: 34px;
+        }
+        .slider.round:before {
+        border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bookshelf</h1>
+        <button>New Book</button>
+    </header>
+    <div id="container">
+        <div class="card">
+            <img src="book-open-variant.svg" alt="" />
+            <h2>The Lord Of The Rings</h2>
+            <p>By Author Name</p>
+            <p>150 pages</p>
+            <p>Read <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </p>
+            <img src="trash-can-outline.svg" alt="Delete book" class="delete" />
+        </div>
+
+        <div class="card">
+            <img src="book-open-variant.svg" alt="" />
+            <h2>The Lord Of The Rings</h2>
+            <p>By Author Name</p>
+            <p>150 pages</p>
+            <p>Read <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </p>
+            <img src="trash-can-outline.svg" alt="Delete book" class="delete" />
+        </div>
+    </div>
+</body>
+</html>
