@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookshelf</title>
     <script>
+        let myLibrary = [];
+
         function Book(title, author, pages, read) {
         this.title = title;
         this.author = author;
@@ -16,9 +18,28 @@
         }
         }
 
+        function addBookToLibrary() {
+            event.preventDefault();
+            function checkRead() {
+                return (document.getElementById("read").checked ? true : false);
+            }
+            let object = {
+                title: document.getElementById("title").value,
+                author: document.getElementById("author").value,
+                pages: document.getElementById("pages").value,
+                read: checkRead(),
+            };
+            myLibrary.push(object);
+        }
+
     const theHobbit = new Book("The Hobbit", "J.R.R. Tolkein", "295", "No")
 
-    console.log(theHobbit.info());
+        // Function to loop through myLibrary array and display each book on the page in its own card
+
+
+
+
+        
     </script>
     <style>
         body {
@@ -192,7 +213,17 @@
     </div>
     <footer>
         <p>Photo by <a href="https://unsplash.com/fr/@itfeelslikefilm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">🇸🇮 Janko Ferlič</a> on <a href="https://unsplash.com/photos/sfL_QOnmy00?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
-  
+        <!-- Add form validation -->
+        <p><label for="title">Title: </label>
+            <input type="text" name="title" id="title"></input>
+            <label for="author">Author: </label>
+            <input type="text" name="author" id="author"></input>
+            <label for="pages">Pages: </label>
+            <input type="number" name="pages" id="pages"></input>
+            <label for="read">Read: </label>
+            <input type="checkbox" name="read" id="read"></input>
+            <button onclick="addBookToLibrary()">Add book</button>
+        </p>
     </footer>
 </body>
 </html>
