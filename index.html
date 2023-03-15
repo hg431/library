@@ -11,16 +11,18 @@
             background-repeat: no-repeat;
             background-size: cover;
             font-family: serif;
+            margin:20px;
         }
         header {
             border-bottom: solid 3px rgba(255, 255, 255, 0.35);
             display: flex;
+            padding-bottom:20px;
             margin-bottom:20px;
         }
         h1 {
             font-size: 4rem;
             color:white;
-            margin: 10px;
+            margin: 0;
         }
         button {
             font-family: inherit;
@@ -42,8 +44,7 @@
             font-weight: bold;
         }
         .card {
-            width: 449px;
-            height: 305px;
+            width: 450px;
             background: rgba(217, 217, 217, 0.8);
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(25px);
@@ -52,7 +53,8 @@
             padding: 20px;
         }
         .card img {
-            width:47px;
+            height:1.9rem;
+            padding-right:10px;
         }
         h2 {
             margin:0;
@@ -70,6 +72,9 @@
             opacity:1;
             cursor:pointer;
             transition:0.5s;
+        }
+        .card p {
+            margin-left:40px;
         }
         #container {
             display:flex;
@@ -125,6 +130,19 @@
         .slider.round:before {
         border-radius: 50%;
         }
+        footer {
+            border-top: solid 3px rgba(255, 255, 255, 0.35);
+            margin-top:20px;
+            padding-top:20px;
+            text-align: center;
+            color:white;
+            opacity: 0.7;
+            text-shadow: 2px 2px black;
+        }
+        footer a {
+            color:white;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -134,8 +152,7 @@
     </header>
     <div id="container">
         <div class="card">
-            <img src="book-open-variant.svg" alt="" />
-            <h2>The Lord Of The Rings</h2>
+            <h2><img src="book-open-variant.svg" alt="" />The Lord Of The Rings</h2>
             <p>By Author Name</p>
             <p>150 pages</p>
             <p>Read <label class="switch">
@@ -147,8 +164,7 @@
         </div>
 
         <div class="card">
-            <img src="book-open-variant.svg" alt="" />
-            <h2>The Lord Of The Rings</h2>
+            <h2><img src="book-open-variant.svg" alt="" />The Lord Of The Rings</h2>
             <p>By Author Name</p>
             <p>150 pages</p>
             <p>Read <label class="switch">
@@ -159,5 +175,9 @@
             <img src="trash-can-outline.svg" alt="Delete book" class="delete" />
         </div>
     </div>
+    <footer>
+        <p>Photo by <a href="https://unsplash.com/fr/@itfeelslikefilm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">🇸🇮 Janko Ferlič</a> on <a href="https://unsplash.com/photos/sfL_QOnmy00?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
+  
+    </footer>
 </body>
 </html>
