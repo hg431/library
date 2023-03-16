@@ -5,42 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookshelf</title>
-    <script>
-        let myLibrary = [];
 
-        function Book(title, author, pages, read) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.read = read;
-        this.info = function() {
-            return `Title: ${title}, Author: ${author}, Pages: ${pages}, Read: ${read}`;
-        }
-        }
-
-        function addBookToLibrary() {
-            event.preventDefault();
-            function checkRead() {
-                return (document.getElementById("read").checked ? true : false);
-            }
-            let object = {
-                title: document.getElementById("title").value,
-                author: document.getElementById("author").value,
-                pages: document.getElementById("pages").value,
-                read: checkRead(),
-            };
-            myLibrary.push(object);
-        }
-
-    const theHobbit = new Book("The Hobbit", "J.R.R. Tolkein", "295", "No")
-
-        // Function to loop through myLibrary array and display each book on the page in its own card
-
-
-
-
-        
-    </script>
     <style>
         body {
             background-image: url(background.jpg);
@@ -188,42 +153,84 @@
     </header>
     <div id="container">
         <div class="card">
-            <h2><img src="book-open-variant.svg" alt="" />The Lord Of The Rings</h2>
-            <p>By Author Name</p>
-            <p>150 pages</p>
-            <p>Read <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-              </label>
+            <h2><img src="book-open-variant.svg" alt="" />Add new book</h2>
+
+            <p><label for="title">Title: </label>
+                <input type="text" name="title" id="title"></input></p>
+                <p><label for="author">Author: </label>
+                <input type="text" name="author" id="author"></input></p>
+                <p><label for="pages">Pages: </label>
+                <input type="number" name="pages" id="pages"></input></p>
+                <p><label for="read">Read: </label>
+                <label class="switch">
+                    <input type="checkbox" name="read" id="read">
+                    <span class="slider round"></span>
+                  </label></p>
+                <button onclick="addBookToLibrary()">Add book</button>
             </p>
-            <img src="trash-can-outline.svg" alt="Delete book" class="delete" />
         </div>
 
-        <div class="card">
-            <h2><img src="book-open-variant.svg" alt="" />The Lord Of The Rings</h2>
-            <p>By Author Name</p>
-            <p>150 pages</p>
-            <p>Read <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-              </label>
-            </p>
-            <img src="trash-can-outline.svg" alt="Delete book" class="delete" />
-        </div>
     </div>
     <footer>
         <p>Photo by <a href="https://unsplash.com/fr/@itfeelslikefilm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">🇸🇮 Janko Ferlič</a> on <a href="https://unsplash.com/photos/sfL_QOnmy00?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
         <!-- Add form validation -->
-        <p><label for="title">Title: </label>
-            <input type="text" name="title" id="title"></input>
-            <label for="author">Author: </label>
-            <input type="text" name="author" id="author"></input>
-            <label for="pages">Pages: </label>
-            <input type="number" name="pages" id="pages"></input>
-            <label for="read">Read: </label>
-            <input type="checkbox" name="read" id="read"></input>
-            <button onclick="addBookToLibrary()">Add book</button>
-        </p>
+
     </footer>
+    <script>
+        let myLibrary = [];
+
+        function Book(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.info = function() {
+            return `Title: ${title}, Author: ${author}, Pages: ${pages}, Read: ${read}`;
+        }
+        }
+
+        function addBookToLibrary() {
+            event.preventDefault();
+            function checkRead() {
+                return (document.getElementById("read").checked ? "checked" : "");
+            }
+            let object = {
+                title: document.getElementById("title").value,
+                author: document.getElementById("author").value,
+                pages: document.getElementById("pages").value,
+                read: checkRead(),
+            };
+            myLibrary.push(object);
+            renderCards();
+        }
+
+
+    // Function to loop through myLibrary array and display each book on the page in its own card
+
+    const div = document.getElementById("container");
+
+    function renderCards() {
+        let i = 0;
+        while (i < myLibrary.length) {
+            const newDiv = document.createElement("div");
+            newDiv.className = "card";
+            newDiv.innerHTML = 
+                `<h2><img src="book-open-variant.svg" alt="Book" />${myLibrary[i].title}</h2>
+                    <p>By ${myLibrary[i].author}</p>
+                    <p>${myLibrary[i].pages} pages</p>
+                    <p>Read <label class="switch">
+                        <input type="checkbox" ${myLibrary[i].read}>
+                        <span class="slider round"></span>
+                    </label>
+                    </p>
+                    <img src="trash-can-outline.svg" alt="Delete book" class="delete" />`
+            div.appendChild(newDiv);
+            i++;
+        };
+    };
+
+
+        
+    </script>
 </body>
 </html>
