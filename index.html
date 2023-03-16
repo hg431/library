@@ -144,31 +144,38 @@
             color:white;
             text-decoration: none;
         }
+        #newbook {
+            display:none;
+            position:fixed;
+            top:5%;
+            right:5%;
+            z-index:9;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Bookshelf</h1>
-        <button>New Book</button>
+        <button onclick="showNewBook()">New Book</button>
     </header>
+    <div class="card" id="newbook">
+        <p><label for="title">Title: </label>
+            <input type="text" name="title" id="title"></input></p>
+            <p><label for="author">Author: </label>
+            <input type="text" name="author" id="author"></input></p>
+            <p><label for="pages">Pages: </label>
+            <input type="number" name="pages" id="pages"></input></p>
+            <p><label for="read">Read: </label>
+            <label class="switch">
+                <input type="checkbox" name="read" id="read">
+                <span class="slider round"></span>
+              </label></p>
+            <button onclick="addBookToLibrary()">Add book</button>
+            <button onclick="hideNewBook()">Close</button>
+        </p>
+    </div>
     <div id="container">
-        <div class="card">
-            <h2><img src="book-open-variant.svg" alt="" />Add new book</h2>
-
-            <p><label for="title">Title: </label>
-                <input type="text" name="title" id="title"></input></p>
-                <p><label for="author">Author: </label>
-                <input type="text" name="author" id="author"></input></p>
-                <p><label for="pages">Pages: </label>
-                <input type="number" name="pages" id="pages"></input></p>
-                <p><label for="read">Read: </label>
-                <label class="switch">
-                    <input type="checkbox" name="read" id="read">
-                    <span class="slider round"></span>
-                  </label></p>
-                <button onclick="addBookToLibrary()">Add book</button>
-            </p>
-        </div>
+        
 
     </div>
     <footer>
@@ -211,9 +218,11 @@
 
     function renderCards() {
         let i = 0;
+        div.innerHTML = ``;
         while (i < myLibrary.length) {
             const newDiv = document.createElement("div");
             newDiv.className = "card";
+            newDiv.id = i;
             newDiv.innerHTML = 
                 `<h2><img src="book-open-variant.svg" alt="Book" />${myLibrary[i].title}</h2>
                     <p>By ${myLibrary[i].author}</p>
@@ -223,13 +232,24 @@
                         <span class="slider round"></span>
                     </label>
                     </p>
-                    <img src="trash-can-outline.svg" alt="Delete book" class="delete" />`
+                    <img src="trash-can-outline.svg" alt="Delete book" class="delete" onclick="bin(${i})" />`
             div.appendChild(newDiv);
             i++;
         };
     };
 
+    function showNewBook() {
+        document.getElementById("newbook").style.display = "block";
+    };
+    function hideNewBook() {
+            document.getElementById("newbook").style.display = "";
+        };
 
+    function bin(e) {
+        document.getElementById(e).remove();
+        myLibrary.splice(e, 1);
+        // bug - add three things, remove middle one
+    }
         
     </script>
 </body>
