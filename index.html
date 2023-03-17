@@ -228,7 +228,7 @@
                     <p>By ${myLibrary[i].author}</p>
                     <p>${myLibrary[i].pages} pages</p>
                     <p>Read <label class="switch">
-                        <input type="checkbox" ${myLibrary[i].read}>
+                        <input type="checkbox" class="read" ${myLibrary[i].read} onclick="toggleRead(${i})">
                         <span class="slider round"></span>
                     </label>
                     </p>
@@ -248,7 +248,15 @@
     function bin(e) {
         document.getElementById(e).remove();
         myLibrary.splice(e, 1);
-        // bug - add three things, remove middle one
+        renderCards();
+    }
+
+    function toggleRead(e) {
+        if (document.getElementById(e).getElementsByClassName("read")[0].checked == true) {
+            myLibrary[e].read = "checked";
+        } else if (document.getElementById(e).getElementsByClassName("read")[0].checked == false) {
+            myLibrary[e].read = "";
+        };
     }
         
     </script>
