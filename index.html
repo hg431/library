@@ -12,7 +12,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             font-family: serif;
-            margin:20px;
+            margin:1%;
         }
         header {
             border-bottom: solid 3px rgba(255, 255, 255, 0.35);
@@ -25,16 +25,14 @@
             color:white;
             margin: 0;
         }
-        button {
+        header button {
             font-family: inherit;
             font-size: 100%;
-            line-height: 1.15;
             margin: 0;
             overflow: visible;
             text-transform: none;
             margin-left: auto;
-            width: 232px;
-            height:70px;
+            padding:0 20px;
             background: linear-gradient(180deg, #0B8525 0%, #08621C 100%);
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 15px;
@@ -52,6 +50,17 @@
             border-radius: 16px;
             font-size:1.5rem;
             padding: 20px;
+        }
+        #newbook {
+            width:300px;
+            display:none;
+            position:fixed;
+            top:5%;
+            right:5%;
+            z-index:9;
+        }
+        #newbook p {
+            margin-left:0;
         }
         .card img {
             height:1.9rem;
@@ -99,7 +108,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #ccc;
+        background-color: #a3a3a3;
         -webkit-transition: .4s;
         transition: .4s;
         }
@@ -137,20 +146,14 @@
             padding-top:20px;
             text-align: center;
             color:white;
-            opacity: 0.7;
             text-shadow: 2px 2px black;
+            font-size:0.9rem;
         }
         footer a {
             color:white;
             text-decoration: none;
         }
-        #newbook {
-            display:none;
-            position:fixed;
-            top:5%;
-            right:5%;
-            z-index:9;
-        }
+
     </style>
 </head>
 <body>
@@ -164,7 +167,7 @@
             <p><label for="author">Author: </label>
             <input type="text" name="author" id="author"></input></p>
             <p><label for="pages">Pages: </label>
-            <input type="number" name="pages" id="pages"></input></p>
+            <input type="number" name="pages" id="pages" size="4"></input></p>
             <p><label for="read">Read: </label>
             <label class="switch">
                 <input type="checkbox" name="read" id="read">
@@ -183,82 +186,6 @@
         <!-- Add form validation -->
 
     </footer>
-    <script>
-        let myLibrary = [];
-
-        function Book(title, author, pages, read) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.read = read;
-        this.info = function() {
-            return `Title: ${title}, Author: ${author}, Pages: ${pages}, Read: ${read}`;
-        }
-        }
-
-        function addBookToLibrary() {
-            event.preventDefault();
-            function checkRead() {
-                return (document.getElementById("read").checked ? "checked" : "");
-            }
-            let object = {
-                title: document.getElementById("title").value,
-                author: document.getElementById("author").value,
-                pages: document.getElementById("pages").value,
-                read: checkRead(),
-            };
-            myLibrary.push(object);
-            renderCards();
-        }
-
-
-    // Function to loop through myLibrary array and display each book on the page in its own card
-
-    const div = document.getElementById("container");
-
-    function renderCards() {
-        let i = 0;
-        div.innerHTML = ``;
-        while (i < myLibrary.length) {
-            const newDiv = document.createElement("div");
-            newDiv.className = "card";
-            newDiv.id = i;
-            newDiv.innerHTML = 
-                `<h2><img src="book-open-variant.svg" alt="Book" />${myLibrary[i].title}</h2>
-                    <p>By ${myLibrary[i].author}</p>
-                    <p>${myLibrary[i].pages} pages</p>
-                    <p>Read <label class="switch">
-                        <input type="checkbox" class="read" ${myLibrary[i].read} onclick="toggleRead(${i})">
-                        <span class="slider round"></span>
-                    </label>
-                    </p>
-                    <img src="trash-can-outline.svg" alt="Delete book" class="delete" onclick="bin(${i})" />`
-            div.appendChild(newDiv);
-            i++;
-        };
-    };
-
-    function showNewBook() {
-        document.getElementById("newbook").style.display = "block";
-    };
-    function hideNewBook() {
-            document.getElementById("newbook").style.display = "";
-        };
-
-    function bin(e) {
-        document.getElementById(e).remove();
-        myLibrary.splice(e, 1);
-        renderCards();
-    }
-
-    function toggleRead(e) {
-        if (document.getElementById(e).getElementsByClassName("read")[0].checked == true) {
-            myLibrary[e].read = "checked";
-        } else if (document.getElementById(e).getElementsByClassName("read")[0].checked == false) {
-            myLibrary[e].read = "";
-        };
-    }
-        
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
