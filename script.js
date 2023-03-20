@@ -1,12 +1,14 @@
 const myLibrary = [];
 
-// Object constructor
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+  }
+
 
 // Function to loop through myLibrary array and display each book on the page in its own card
 const div = document.getElementById('container');
